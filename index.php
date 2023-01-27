@@ -58,7 +58,7 @@ if ($result->num_rows > 0) {
         <td>" . $row["tanggallahir"]. "</td>
         <td>" . $row["gender"]. "</td>
         <td>" . $row["kelas"]. "</td>
-        <td><a href=\"edit.php\">edit</a><br><a href="delete.php?id= . $row['id'] . ">Hapus</a>
+        <td><a href=\"edit.php\">edit</a><br><a href='delete.php?id=" .$row["id"]. "'>Hapus</a>
         </td>
       </tr>";
   
