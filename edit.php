@@ -11,25 +11,40 @@
       </a>
     </header>
 </div>
-<form action="postdata.php" method="POST" enctype="multipart/form-data">
+
+<?php
+
+include 'koneksi.php';
+
+$id = $_GET['id'];
+
+
+$sql = " SELECT * FROM `siswa` where id = $id;"; 
+$result = $conn->query($sql);
+
+
+echo " ";
+$row = $result->fetch_assoc();
+?>
+<form action='update.php' method='post' >
 
 <div class="container mt-5">
+
   <div class="mb-3">
     <label>ID</label><br>
-    <input type="text" class="form-control" name="id" placeholder="kolom tidak perlu diisi"><br> 
+    <input type="hidden" class="form-control" name="id" value="<?php echo $row['id']; ?>"><br> 
   </div>
-  
   <div class="mb-3">
     <label>Masukkan Nama</label><br>
-    <input type="text" class="form-control" name="nama" value=""><br> 
+    <input type="text" class="form-control" name="nama" value="<?php echo $row['nama']; ?>"><br> 
   </div>
   <div class="mb-3">
     <label>Masukkan Email</label><br>
-    <input type="text" class="form-control" name="email" value=""><br>  
+    <input type="text" class="form-control" name="email" value="<?php echo $row['email']; ?>"><br>  
   </div>
   <div class="mb-3">
     <label>Masukkan Alamat</label><br>
-    <input type="text" class="form-control" name="alamat" value=""><br>
+    <input type="text" class="form-control" name="alamat" value="<?php echo $row['alamat']; ?>"><br>
   </div>
   <div class="mb-3">
     <label>Tanggal Lahir</label><br>
@@ -47,17 +62,24 @@
     </label>
   </div> 
   <div class="mb-3">
-    <label>Masukkan Kelas</label><br>
-    <select name="kursus" class="form-select">
-        <option value="1">Kelas Programmer</option>
-        <option value="2">Kelas Progammer</option>
-        <option value="3">Kelas Enggres</option>
-    </select> 
+    <p>Pilih Kursus</p>
+  <div class="form-check">
+        <input class="form-check-input" type="radio" name="kelas" id="flexRadioDefault1" value="1">
+        <label class="form-check-label" for="flexRadioDefault1">
+    Kelas Programmer
+        </label>
   </div>
-
-  <div class="mb-3">
-    <label>Masukkan Foto</label><br>
-    <input type="file" class="form-control" name="foto" value=""><br> 
+  <div class="form-check">
+        <input class="form-check-input" type="radio" name="kelas" id="flexRadioDefault2" value="2" checked>
+        <label class="form-check-label" for="flexRadioDefault2">
+    Kelas Progammer
+        </label>
+  </div>
+  <div class="form-check">
+        <input class="form-check-input" type="radio" name="kelas" id="flexRadioDefault2" value="3" checked>
+        <label class="form-check-label" for="flexRadioDefault2">
+    Kelas Enggres
+        </label>
   </div>
 </div>
     <input type="submit" class="btn btn-primary mb-3" value="kirim">
